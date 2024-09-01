@@ -1,9 +1,9 @@
+require('dotenv').config();
 const express = require('express');
 const connectDB = require('./config/db');
 const propertyRoutes = require('./routes/propertyRoutes');
 const connectRoutes = require('./routes/connectRoutes');
 const helmet = require('helmet');
-require('dotenv').config();
 
 const app = express();
 
