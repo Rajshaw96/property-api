@@ -15,8 +15,16 @@ app.use(helmet());
 app.use(express.json()); // Replacing bodyParser with Express's built-in middleware
 
 // Configure CORS
+const allowedOrigins = ['http://localhost:3000', 'https://property-manager-j6d4.onrender.com'];
+
 app.use(cors({
-  origin: 'https://property-manager-j6d4.onrender.com' // Replace with your frontend URL
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
 }));
 
 // Route handling
